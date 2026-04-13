@@ -19,15 +19,15 @@ export default async function ArticlePage({
   const paragraphs = article.content.split("\n\n").filter(Boolean);
 
   return (
-    <article className="max-w-3xl mx-auto">
+    <article className="mx-auto max-w-4xl">
       <div className="mb-6">
-        <Link href="/tagesloehnerei" className="text-amber-700 hover:text-amber-900 text-sm">
+        <Link href="/tagesloehnerei" className="text-sm font-semibold text-[var(--green-deep)] hover:text-[var(--brown-deep)]">
           ← Zurück zur Übersicht
         </Link>
       </div>
 
-      <header className="mb-8">
-        <div className="text-sm text-amber-600 mb-2">
+      <header className="section-shell mb-8 rounded-[2rem] px-5 py-7 sm:px-8 sm:py-9">
+        <div className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--orange-deep)] sm:text-sm">
           {new Date(article.date).toLocaleDateString("de-DE", {
             year: "numeric",
             month: "long",
@@ -35,17 +35,17 @@ export default async function ArticlePage({
           })}{" "}
           · {article.author}
         </div>
-        <h1 className="text-3xl md:text-4xl font-bold text-amber-900 leading-tight mb-4">
+        <h1 className="mb-4 text-4xl font-semibold leading-tight text-[var(--brown-deep)] sm:text-5xl lg:text-6xl">
           {article.title}
         </h1>
-        <p className="text-lg text-gray-600 leading-relaxed border-l-4 border-amber-300 pl-4">
+        <p className="border-l-4 border-[var(--orange-deep)] pl-4 text-base leading-relaxed text-[rgba(45,36,23,0.78)] sm:text-lg">
           {article.excerpt}
         </p>
       </header>
 
-      <div className="prose prose-amber max-w-none">
+      <div className="space-y-4 rounded-[1.75rem] bg-[rgba(255,250,241,0.72)] px-5 py-6 sm:px-8">
         {paragraphs.map((para, idx) => (
-          <p key={idx} className="text-gray-700 leading-relaxed mb-4">
+          <p key={idx} className="text-base leading-relaxed text-[rgba(45,36,23,0.86)] sm:text-[1.05rem]">
             {para}
           </p>
         ))}

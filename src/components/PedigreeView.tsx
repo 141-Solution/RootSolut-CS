@@ -140,10 +140,10 @@ function SelectedCard({
   const col = sexCls(person.sex);
 
   return (
-    <div className={`rounded-2xl border-2 p-5 shadow-md ${col.bg} ${col.border}`}>
+    <div className={`rounded-[1.75rem] border-2 p-5 shadow-md ${col.bg} ${col.border}`}>
       <div className="flex items-start gap-3">
         <div className="flex-1 min-w-0">
-          <div className={`text-xl font-bold break-words ${col.text}`}>
+          <div className={`text-xl font-bold wrap-break-word ${col.text}`}>
             {person.sex === "M" ? "♂ " : person.sex === "F" ? "♀ " : ""}
             {person.fullName}
           </div>
@@ -151,7 +151,7 @@ function SelectedCard({
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-4 mt-4 text-sm">
+      <div className="mt-4 grid grid-cols-1 gap-4 text-sm sm:grid-cols-2">
         <div>
           <div className="text-[10px] uppercase tracking-widest text-stone-400 font-medium mb-1">Geburt</div>
           <div className="font-medium text-stone-800">{person.birthDate || "–"}</div>
@@ -202,18 +202,18 @@ function FamilySection({
         return (
           <div
             key={fam.id}
-            className="bg-amber-50 rounded-xl border border-amber-200 p-4"
+            className="paper-panel rounded-3xl p-4"
           >
             {spouse && (
-              <div className="flex items-center gap-2 mb-3 flex-wrap">
-                <span className="text-[10px] uppercase tracking-widest text-amber-600 font-medium whitespace-nowrap">
+              <div className="mb-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-2">
+                <span className="text-[10px] uppercase tracking-widest text-(--orange-deep) font-medium whitespace-nowrap">
                   Ehepartner
                 </span>
-                <div className="flex-1 min-w-[120px] max-w-xs">
+                <div className="w-full sm:max-w-xs sm:flex-1">
                   <AncestorCard person={spouse} onNavigate={onNavigate} size="sm" />
                 </div>
                 {fam.marriageDate && (
-                  <span className="text-xs text-stone-400 whitespace-nowrap">
+                  <span className="text-xs text-stone-500 whitespace-nowrap">
                     ⚭ {fam.marriageDate}
                     {fam.marriagePlace ? `, ${fam.marriagePlace}` : ""}
                   </span>
@@ -278,25 +278,29 @@ export default function PedigreeView({ person, personsMap, families, onNavigate 
   const hasGGPs = [8, 9, 10, 11, 12, 13, 14, 15].some((i) => tree[i]);
 
   return (
-    <div>
+    <div className="section-shell rounded-4xl p-4 sm:p-6">
       {/* Great-grandparents row */}
       {hasGGPs && (
         <>
           <RowLabel label="Urgroßeltern" />
-          <div className="grid grid-cols-8 gap-1.5">
-            {[8, 9, 10, 11, 12, 13, 14, 15].map((pos) => (
-              <AncestorCard key={pos} person={tree[pos]} onNavigate={onNavigate} size="xs" />
-            ))}
+          <div className="overflow-x-auto pb-2">
+            <div className="grid min-w-176 grid-cols-8 gap-1.5">
+              {[8, 9, 10, 11, 12, 13, 14, 15].map((pos) => (
+                <AncestorCard key={pos} person={tree[pos]} onNavigate={onNavigate} size="xs" />
+              ))}
+            </div>
           </div>
         </>
       )}
 
       {/* Connector: GGP → GP (only if both rows exist) */}
       {hasGGPs && hasGPs && (
-        <div className="grid grid-cols-4 gap-1.5">
-          {[0, 1, 2, 3].map((i) => (
-            <Bridge key={i} leftPresent={!!tree[8 + i * 2]} rightPresent={!!tree[9 + i * 2]} />
-          ))}
+        <div className="overflow-x-auto pb-1">
+          <div className="grid min-w-176 grid-cols-4 gap-1.5">
+            {[0, 1, 2, 3].map((i) => (
+              <Bridge key={i} leftPresent={!!tree[8 + i * 2]} rightPresent={!!tree[9 + i * 2]} />
+            ))}
+          </div>
         </div>
       )}
 
@@ -304,20 +308,24 @@ export default function PedigreeView({ person, personsMap, families, onNavigate 
       {hasGPs && (
         <>
           <RowLabel label="Großeltern" />
-          <div className="grid grid-cols-4 gap-1.5">
-            {[4, 5, 6, 7].map((pos) => (
-              <AncestorCard key={pos} person={tree[pos]} onNavigate={onNavigate} size="sm" />
-            ))}
+          <div className="overflow-x-auto pb-2">
+            <div className="grid min-w-lg grid-cols-4 gap-1.5">
+              {[4, 5, 6, 7].map((pos) => (
+                <AncestorCard key={pos} person={tree[pos]} onNavigate={onNavigate} size="sm" />
+              ))}
+            </div>
           </div>
         </>
       )}
 
       {/* Connector: GP → Parents */}
       {hasGPs && hasParents && (
-        <div className="grid grid-cols-2 gap-1.5">
-          {[0, 1].map((i) => (
-            <Bridge key={i} leftPresent={!!tree[4 + i * 2]} rightPresent={!!tree[5 + i * 2]} />
-          ))}
+        <div className="overflow-x-auto pb-1">
+          <div className="grid min-w-lg grid-cols-2 gap-1.5">
+            {[0, 1].map((i) => (
+              <Bridge key={i} leftPresent={!!tree[4 + i * 2]} rightPresent={!!tree[5 + i * 2]} />
+            ))}
+          </div>
         </div>
       )}
 
@@ -325,7 +333,7 @@ export default function PedigreeView({ person, personsMap, families, onNavigate 
       {hasParents && (
         <>
           <RowLabel label="Eltern" />
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {[2, 3].map((pos) => (
               <AncestorCard key={pos} person={tree[pos]} onNavigate={onNavigate} size="md" />
             ))}

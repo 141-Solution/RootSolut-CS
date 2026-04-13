@@ -112,22 +112,22 @@ Auf unsere Herkunft aus der mecklenburgischen Ackerfurche können wir Schwießel
   ];
 
   return (
-    <div className="space-y-12">
+    <div className="space-y-8 sm:space-y-10 lg:space-y-12">
       {/* Header */}
-      <div>
-        <h1 className="text-4xl font-bold text-amber-900 mb-3">Chronologie</h1>
-        <p className="text-lg text-stone-600">
+      <div className="section-shell rounded-[2rem] px-5 py-7 sm:px-8 sm:py-9">
+        <h1 className="mb-3 text-5xl font-semibold text-[var(--brown-deep)] sm:text-6xl">Chronologie</h1>
+        <p className="max-w-3xl text-base leading-relaxed text-[rgba(45,36,23,0.78)] sm:text-lg">
           Eine kleine Chronologie der Schwießelmänner – von Rostock bis Berlin, vom Mittelalter bis heute.
         </p>
       </div>
 
       {/* Table of Contents */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
+      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4">
         {sections.map((section) => (
           <a
             key={section.id}
             href={`#${section.id}`}
-            className="px-3 py-2 rounded-lg bg-amber-50 border border-amber-200 text-xs font-medium text-amber-800 hover:bg-amber-100 transition-colors"
+            className="paper-panel rounded-2xl px-4 py-3 text-sm font-medium text-[var(--brown-deep)] transition-colors hover:bg-[rgba(227,236,222,0.65)]"
           >
             {section.title}
           </a>
@@ -140,28 +140,28 @@ Auf unsere Herkunft aus der mecklenburgischen Ackerfurche können wir Schwießel
           <section
             key={section.id}
             id={section.id}
-            className="scroll-mt-8"
+            className="section-shell scroll-mt-24 rounded-[2rem] px-5 py-6 sm:px-7 sm:py-8"
           >
             {/* Section Header */}
-            <div className="mb-6 pb-4 border-b-2 border-amber-200">
+            <div className="mb-6 border-b border-[rgba(95,61,40,0.14)] pb-4">
               <div className="flex items-start gap-4">
-                <div className="text-3xl font-bold text-amber-900 opacity-25 select-none">
+                <div className="text-2xl font-semibold text-[var(--orange-deep)] opacity-50 select-none sm:text-3xl">
                   {String(idx + 1).padStart(2, "0")}
                 </div>
                 <div className="flex-1">
-                  <h2 className="text-2xl font-bold text-amber-900">{section.title}</h2>
+                  <h2 className="text-3xl font-semibold text-[var(--brown-deep)] sm:text-[2.2rem]">{section.title}</h2>
                   {section.subtitle && (
-                    <p className="text-amber-700 italic text-sm mt-1">{section.subtitle}</p>
+                    <p className="mt-1 text-sm italic text-[var(--green-deep)]">{section.subtitle}</p>
                   )}
                 </div>
               </div>
             </div>
 
             {/* Content */}
-            <div className="prose prose-sm max-w-none">
-              <div className="text-stone-700 leading-relaxed space-y-4">
+            <div className="max-w-none">
+              <div className="space-y-4 text-[var(--foreground)] leading-relaxed">
                 {section.content.split("\n\n").map((para, pidx) => (
-                  <p key={pidx} className="text-base">
+                  <p key={pidx} className="text-base sm:text-[1.05rem]">
                     {para}
                   </p>
                 ))}
@@ -169,12 +169,12 @@ Auf unsere Herkunft aus der mecklenburgischen Ackerfurche können wir Schwießel
             </div>
 
             {/* Section Footer */}
-            <div className="mt-8 pt-6 flex justify-between items-center text-xs text-stone-400">
+            <div className="mt-8 flex flex-col gap-3 border-t border-[rgba(95,61,40,0.1)] pt-5 text-xs text-stone-500 sm:flex-row sm:items-center sm:justify-between">
               <span>Abschnitt {idx + 1} von {sections.length}</span>
               {idx < sections.length - 1 && (
                 <a
                   href={`#${sections[idx + 1].id}`}
-                  className="text-amber-600 hover:text-amber-700 font-medium transition-colors"
+                  className="font-semibold text-[var(--green-deep)] transition-colors hover:text-[var(--brown-deep)]"
                 >
                   Nächster Abschnitt →
                 </a>
@@ -188,14 +188,14 @@ Auf unsere Herkunft aus der mecklenburgischen Ackerfurche können wir Schwießel
       <div className="flex justify-center pt-8">
         <a
           href="#intro"
-          className="px-6 py-2 bg-amber-800 text-white rounded-xl hover:bg-amber-700 transition-colors font-medium text-sm"
+          className="rounded-full bg-[var(--green-deep)] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[var(--brown-deep)]"
         >
           ↑ Nach oben
         </a>
       </div>
 
       {/* Footer */}
-      <div className="mt-16 pt-8 border-t border-amber-200 text-center text-stone-500 text-sm">
+      <div className="mt-16 border-t border-[rgba(95,61,40,0.14)] pt-8 text-center text-sm text-stone-500">
         <p className="italic">Christian Schwießelmann, zu Weihnachten 2025 in Geltow</p>
       </div>
     </div>

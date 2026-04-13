@@ -56,31 +56,31 @@ export default function KontaktPage() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-amber-900 mb-2">Kontakt</h1>
-        <p className="text-gray-600">
+    <div className="mx-auto max-w-3xl">
+      <div className="section-shell mb-8 rounded-[2rem] px-5 py-7 sm:px-8 sm:py-9">
+        <h1 className="mb-2 text-5xl font-semibold text-[var(--brown-deep)] sm:text-6xl">Kontakt</h1>
+        <p className="max-w-2xl text-base leading-relaxed text-[rgba(45,36,23,0.78)] sm:text-lg">
           Haben Sie Ergänzungen, Korrekturen oder Fragen zur Familienchronik?
           Schreiben Sie uns!
         </p>
       </div>
 
       {status === "success" ? (
-        <div className="bg-green-50 border border-green-200 rounded-xl p-8 text-center">
+        <div className="paper-panel rounded-[2rem] p-8 text-center">
           <div className="text-4xl mb-3">✅</div>
-          <h2 className="text-xl font-semibold text-green-800 mb-2">Nachricht gesendet!</h2>
-          <p className="text-green-700">
+          <h2 className="mb-2 text-3xl font-semibold text-[var(--green-deep)]">Nachricht gesendet!</h2>
+          <p className="text-[var(--brown-deep)]/80">
             Vielen Dank für Ihre Nachricht. Wir werden uns so bald wie möglich bei Ihnen melden.
           </p>
           <button
             onClick={() => setStatus("idle")}
-            className="mt-4 text-green-700 hover:text-green-900 underline text-sm"
+            className="mt-4 text-sm font-semibold text-[var(--green-deep)] underline hover:text-[var(--brown-deep)]"
           >
             Weitere Nachricht senden
           </button>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="bg-white border border-amber-200 rounded-xl p-6 space-y-5">
+        <form onSubmit={handleSubmit} className="paper-panel rounded-[2rem] p-5 space-y-5 sm:p-7">
           {status === "error" && (
             <div className="bg-red-50 border border-red-200 rounded-lg p-3 text-red-700 text-sm">
               Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.
@@ -88,7 +88,7 @@ export default function KontaktPage() {
           )}
 
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="name" className="mb-1 block text-sm font-medium text-[var(--brown-deep)]">
               Name <span className="text-red-500">*</span>
             </label>
             <input
@@ -96,7 +96,7 @@ export default function KontaktPage() {
               type="text"
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
-              className={`w-full border rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 ${
+              className={`w-full rounded-2xl border bg-white/90 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--green-deep)] ${
                 errors.name ? "border-red-400" : "border-amber-300"
               }`}
               placeholder="Ihr Name"
@@ -105,7 +105,7 @@ export default function KontaktPage() {
           </div>
 
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="email" className="mb-1 block text-sm font-medium text-[var(--brown-deep)]">
               E-Mail <span className="text-red-500">*</span>
             </label>
             <input
@@ -113,7 +113,7 @@ export default function KontaktPage() {
               type="email"
               value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
-              className={`w-full border rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 ${
+              className={`w-full rounded-2xl border bg-white/90 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--green-deep)] ${
                 errors.email ? "border-red-400" : "border-amber-300"
               }`}
               placeholder="ihre@email.de"
@@ -122,7 +122,7 @@ export default function KontaktPage() {
           </div>
 
           <div>
-            <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="message" className="mb-1 block text-sm font-medium text-[var(--brown-deep)]">
               Nachricht <span className="text-red-500">*</span>
             </label>
             <textarea
@@ -130,7 +130,7 @@ export default function KontaktPage() {
               rows={6}
               value={form.message}
               onChange={(e) => setForm({ ...form, message: e.target.value })}
-              className={`w-full border rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 resize-none ${
+              className={`w-full resize-none rounded-2xl border bg-white/90 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--green-deep)] ${
                 errors.message ? "border-red-400" : "border-amber-300"
               }`}
               placeholder="Ihre Nachricht…"
@@ -141,12 +141,12 @@ export default function KontaktPage() {
           <button
             type="submit"
             disabled={status === "sending"}
-            className="w-full bg-amber-900 text-white rounded-lg px-6 py-3 font-medium hover:bg-amber-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full rounded-full bg-[var(--green-deep)] px-6 py-3 text-base font-semibold text-white transition-colors hover:bg-[var(--brown-deep)] disabled:cursor-not-allowed disabled:opacity-50"
           >
             {status === "sending" ? "Wird gesendet…" : "Nachricht senden"}
           </button>
 
-          <p className="text-xs text-gray-400 text-center">
+          <p className="text-center text-xs text-stone-500">
             Mit dem Absenden stimmen Sie zu, dass Ihre Daten zur Bearbeitung Ihrer Anfrage verwendet werden.
           </p>
         </form>

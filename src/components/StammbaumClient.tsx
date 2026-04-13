@@ -37,31 +37,29 @@ export default function StammbaumClient({ persons, families, personsMap }: Props
   );
 
   return (
-    <div className="flex flex-col lg:flex-row gap-6 min-h-[70vh]">
+    <div className="flex min-h-[70vh] flex-col gap-6 lg:flex-row">
       {/* ── Left panel: search list ────────────────────────────────────────────── */}
-      <div className="lg:w-72 xl:w-80 flex-shrink-0">
-        <div className="sticky top-4 space-y-3">
+      <div className="flex-shrink-0 lg:w-80 xl:w-96">
+        <div className="space-y-3 lg:sticky lg:top-24">
           {/* Search input */}
-          <div className="relative">
+          <div className="paper-panel rounded-[1.75rem] p-4 sm:p-5">
             <input
               type="search"
               placeholder="Person, Ort suchen…"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              className="w-full border border-amber-300 rounded-xl px-4 py-2.5 text-sm bg-white
-                         focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent
+              className="w-full rounded-2xl border border-amber-300 bg-white px-4 py-3 text-sm
+                         focus:outline-none focus:ring-2 focus:ring-[var(--green-deep)] focus:border-transparent
                          placeholder:text-stone-400 shadow-sm"
             />
-          </div>
+            <p className="px-1 pt-3 text-xs uppercase tracking-[0.18em] text-stone-500">
+              {filtered.length === persons.length
+                ? `${persons.length} Personen gesamt`
+                : `${filtered.length} von ${persons.length} Personen`}
+            </p>
 
-          <p className="text-xs text-stone-400 px-1">
-            {filtered.length === persons.length
-              ? `${persons.length} Personen gesamt`
-              : `${filtered.length} von ${persons.length} Personen`}
-          </p>
-
-          {/* Person list */}
-          <ul className="space-y-1 max-h-[calc(100vh-14rem)] overflow-y-auto pr-1 scrollbar-thin">
+            {/* Person list */}
+            <ul className="mt-3 space-y-1 overflow-y-auto pr-1 lg:max-h-[calc(100vh-14rem)]">
             {filtered.map((person) => {
               const isActive = selected?.id === person.id;
               const byear = person.birthDate?.match(/\d{4}/)?.[0];
@@ -71,10 +69,10 @@ export default function StammbaumClient({ persons, families, personsMap }: Props
                 <li key={person.id}>
                   <button
                     onClick={() => setSelected(person)}
-                    className={`w-full text-left px-3 py-2.5 rounded-xl border transition-colors text-sm ${
+                    className={`w-full rounded-2xl border px-3 py-3 text-left text-sm transition-colors ${
                       isActive
-                        ? "bg-amber-800 text-white border-amber-800 shadow-md"
-                        : "bg-white border-stone-200 hover:bg-amber-50 hover:border-amber-300"
+                        ? "bg-[var(--green-deep)] text-white border-[var(--green-deep)] shadow-md"
+                        : "bg-white/90 border-stone-200 hover:bg-[rgba(243,214,185,0.3)] hover:border-[var(--orange-deep)]"
                     }`}
                   >
                     <div className="font-medium truncate">
@@ -101,13 +99,14 @@ export default function StammbaumClient({ persons, families, personsMap }: Props
               <li className="text-center text-stone-400 text-sm py-8">Keine Treffer</li>
             )}
           </ul>
+          </div>
         </div>
       </div>
 
       {/* ── Right panel: pedigree chart ────────────────────────────────────────── */}
       <div className="flex-1 min-w-0">
         {selected ? (
-          <div className="overflow-y-auto max-h-[calc(100vh-8rem)]">
+          <div className="overflow-visible lg:max-h-[calc(100vh-8rem)] lg:overflow-y-auto">
             <PedigreeView
               key={selected.id}
               person={selected}
@@ -117,11 +116,10 @@ export default function StammbaumClient({ persons, families, personsMap }: Props
             />
           </div>
         ) : (
-          <div className="flex flex-col items-center justify-center h-full min-h-[40vh]
-                          bg-amber-50 rounded-2xl border-2 border-dashed border-amber-200 text-center p-8">
+          <div className="section-shell flex min-h-[40vh] flex-col items-center justify-center rounded-[2rem] border-2 border-dashed text-center p-8">
             <div className="text-5xl mb-4 select-none opacity-40">🌳</div>
-            <p className="text-amber-800 font-medium">Person auswählen</p>
-            <p className="text-stone-400 text-sm mt-1">
+            <p className="font-semibold text-[var(--brown-deep)]">Person auswählen</p>
+            <p className="mt-1 max-w-md text-sm text-stone-500">
               Suche links nach einer Person und klicke sie an, um ihren Stammbaum zu sehen.
             </p>
           </div>

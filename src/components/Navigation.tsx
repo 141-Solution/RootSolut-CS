@@ -17,25 +17,25 @@ export default function Navigation() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="bg-amber-900 text-amber-50 shadow-lg">
-      <div className="container mx-auto px-4 max-w-5xl">
-        <div className="flex items-center justify-between py-4">
+    <header className="sticky top-0 z-40 border-b border-[rgba(95,61,40,0.14)] bg-[rgba(47,34,24,0.92)] text-stone-50 backdrop-blur-md shadow-[0_12px_30px_rgba(45,36,23,0.24)]">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between gap-4 py-3 sm:py-4">
           {/* Logo/Title */}
-          <Link href="/" className="flex flex-col leading-tight">
-            <span className="text-xl font-bold tracking-wide">Die Schwiesselmänner</span>
-            <span className="text-xs text-amber-300 tracking-widest uppercase">Ahnenforschung &amp; Familiengeschichte</span>
+          <Link href="/" className="min-w-0 flex flex-col leading-tight">
+            <span className="truncate text-2xl font-semibold tracking-[0.02em] text-[var(--orange-soft)] sm:text-3xl">Die Schwiesselmänner</span>
+            <span className="hidden text-[10px] uppercase tracking-[0.32em] text-[rgba(227,236,222,0.82)] sm:block">Ahnenforschung &amp; Familiengeschichte</span>
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden md:flex gap-1">
+          <nav className="hidden md:flex flex-wrap justify-end gap-1.5">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`px-3 py-2 rounded text-sm transition-colors ${
+                className={`rounded-full px-3 py-2 text-sm font-medium transition-colors ${
                   pathname === link.href
-                    ? "bg-amber-700 text-white"
-                    : "hover:bg-amber-800 text-amber-100"
+                    ? "bg-[var(--orange-deep)] text-white"
+                    : "text-[rgba(255,250,241,0.9)] hover:bg-[rgba(227,236,222,0.14)] hover:text-white"
                 }`}
               >
                 {link.label}
@@ -45,9 +45,10 @@ export default function Navigation() {
 
           {/* Mobile menu button */}
           <button
-            className="md:hidden p-2 rounded hover:bg-amber-800 transition-colors"
+            className="md:hidden rounded-full border border-[rgba(243,214,185,0.2)] p-2 text-[var(--orange-soft)] transition-colors hover:bg-[rgba(227,236,222,0.14)]"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Menü öffnen"
+            aria-expanded={menuOpen}
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {menuOpen ? (
@@ -61,21 +62,23 @@ export default function Navigation() {
 
         {/* Mobile nav */}
         {menuOpen && (
-          <nav className="md:hidden pb-4 flex flex-col gap-1">
+          <nav className="md:hidden pb-4">
+            <div className="section-shell rounded-2xl p-2">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className={`px-3 py-2 rounded text-sm transition-colors ${
+                className={`block rounded-xl px-3 py-3 text-sm font-medium transition-colors ${
                   pathname === link.href
-                    ? "bg-amber-700 text-white"
-                    : "hover:bg-amber-800 text-amber-100"
+                    ? "bg-[var(--green-deep)] text-white"
+                    : "text-[var(--brown-deep)] hover:bg-[rgba(227,236,222,0.6)]"
                 }`}
               >
                 {link.label}
               </Link>
             ))}
+            </div>
           </nav>
         )}
       </div>
