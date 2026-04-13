@@ -1,7 +1,7 @@
 # IT-Dienstleistungsvertrag
 ### Erstellung einer Website für Ahnenforschung
 
-> **Vertragsnummer:** SW-2025-001 &nbsp;|&nbsp; **Datum:** 13.04.2026
+> **Vertragsnummer:** SW-2026-001 &nbsp;|&nbsp; **Datum:** 13.04.2026
 
 ---
 
@@ -48,9 +48,10 @@ Gegenstand dieses Vertrages ist die Konzeption, Entwicklung und Übergabe einer 
 | **1** | Kundengespräch | Anforderungsaufnahme, Festhalten der Gesprächsergebnisse | 13.04.2026 |
 | **2** | IT-Vertrag | Erstellung und Unterzeichnung dieses Vertrages, Upload in Schulcloud | 13.04.2026 |
 | **3** | Konzept & Wireframe | Seitenstruktur, Design-Skizzen, Rubrikenplanung | 13.04.2026 |
-| **4** | Entwicklungsbeginn | Umsetzung max. 2 Blöcke der Website (statischer Code) | _________ |
-| **5** | Fertigstellung | Vollständige Website inkl. aller Rubriken und Funktionen | _________ |
-| **6** | Produktpräsentation | Einweisung des Auftraggebers, Abnahme, Übergabe | _________ |
+| **4** | Entwicklungsbeginn | Umsetzung max. 2 Blöcke der Website (statischer Code) | 13.04.2026 |
+| **5** | Entwicklungsabschluss | Fertigstellung des Webseiten Source Codes & Features | 15.04.2026 |
+| **6** | Fertigstellung | Vollständige Website inkl. aller Rubriken und Funktionen | 04.05.2026 |
+| **7** | Produktpräsentation | Einweisung des Auftraggebers, Abnahme, Übergabe | 04.05.2026 |
 
 ---
 
