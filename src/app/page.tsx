@@ -48,11 +48,10 @@ export default function HomePage() {
       </section>
 
       {/* Stats */}
-      <section className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+      <section className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
         {[
           { label: "Personen", value: personCount, href: "/stammbaum" },
           { label: "Familien", value: familyCount, href: "/stammbaum" },
-          { label: "Artikel", value: articles.length + 1, href: "/tagesloehnerei" },
           { label: "Generationen", value: "4+", href: "/chronologie" },
         ].map((stat) => (
           <Link
