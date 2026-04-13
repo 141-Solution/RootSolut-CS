@@ -10,8 +10,8 @@ Eine moderne Webanwendung zur Ahnenforschung der Familie Schwiesselmann, erstell
 
 - **GEDCOM-Parser** – lädt und verarbeitet `.ged`-Dateien automatisch aus `data/gedcom/`
 - **Stammbaum** – Personensuche, Vorfahrenansicht, Familien und Kinder
-- **Chronologie** – vollständige schriftliche Chronik der Schwießelmänner vom 15. Jahrhundert bis heute
-- **Aus der Tageslöhnerei** – Blog-/Artikelbereich mit veröffentlichten und geplanten Beiträgen
+- **Chronologie** – vollständige schriftliche Chronik der Schwießelmänner
+- **Aus der Tageslöhnerei** – Digitalisiertes Dokument eines Verwandten
 - **Kontakt** – Kontaktformular mit client- und serverseitiger Validierung sowie optionalem E-Mail-Versand via Nodemailer
 - Responsives, mobiloptimiertes Design in erdigen Farbtönen (Grün / Braun / Orange)
 
@@ -36,7 +36,7 @@ Eine moderne Webanwendung zur Ahnenforschung der Familie Schwiesselmann, erstell
 /
 ├── data/
 │   ├── gedcom/          # GEDCOM-Dateien hier ablegen
-│   └── articles/        # Artikel als JSON-Dateien
+│   
 ├── src/
 │   ├── app/             # Next.js App-Router-Seiten & API-Routen
 │   │   ├── page.tsx             # Startseite
@@ -77,25 +77,6 @@ Die Anwendung läuft standardmäßig unter `http://localhost:3000`.
 ## GEDCOM-Daten
 
 Beliebige `.ged`-Dateien einfach im Ordner `data/gedcom/` ablegen. Die Anwendung erkennt und verarbeitet sie automatisch beim nächsten Serverstart. Personen, Familien, Geburts- und Sterbedaten sowie Ortsangaben werden im Stammbaum und in der Chronologie-Ansicht dargestellt.
-
----
-
-## Artikel
-
-Artikel werden als JSON-Dateien in `data/articles/` gespeichert. Jede Datei muss folgendes Format einhalten:
-
-```json
-{
-  "title": "Artikel-Titel",
-  "slug": "artikel-slug",
-  "date": "2025-01-01",
-  "author": "Autor",
-  "excerpt": "Kurze Zusammenfassung.",
-  "content": "Voller Artikel-Text mit\n\nAbsätzen."
-}
-```
-
-Um einen Artikel zu veröffentlichen, den Slug in das Array `PUBLISHED_ARTICLES` in `src/lib/articles.ts` eintragen.
 
 ---
 
